@@ -30,16 +30,14 @@ from strings import get_string
 
 NEXI_VID = [
 "https://telegra.ph/file/1a3c152717eb9d2e94dc2.mp4",
-"https://graph.org/file/ba7699c28dab379b518ca.mp4",
+"https://files.catbox.moe/ln00jb.mp4",
 "https://graph.org/file/83ebf52e8bbf138620de7.mp4",
-"https://graph.org/file/82fd67aa56eb1b299e08d.mp4",
+"https://files.catbox.moe/0fq20c.mp4",
 "https://graph.org/file/318eac81e3d4667edcb77.mp4",
 "https://graph.org/file/7c1aa59649fbf3ab422da.mp4",
-"https://graph.org/file/2a7f857f31b32766ac6fc.mp4",
+"https://files.catbox.moe/t0nepm.mp4",
 
 ]
-
-
 
 @app.on_message(filters.command(["start"]) & filters.private & ~BANNED_USERS)
 @LanguageStart
@@ -101,6 +99,20 @@ async def start_pm(client, message: Message, _):
                 )
     else:
         out = private_panel(_)
+        baby = await message.reply_text(f"**▒▒▒▒▒▒▒▒▒▒ 0%**")
+        await baby.edit_text(f"**█▒▒▒▒▒▒▒▒▒ 10%**")
+        await baby.edit_text(f"**██▒▒▒▒▒▒▒▒ 20%**")
+        await baby.edit_text(f"**███▒▒▒▒▒▒▒ 30%**")
+        await baby.edit_text(f"**████▒▒▒▒▒▒ 40%**")
+        await baby.edit_text(f"**█████▒▒▒▒▒ 50%**")
+        await baby.edit_text(f"**██████▒▒▒▒ 60%**")
+        await baby.edit_text(f"**███████▒▒▒ 70%**")
+        await baby.edit_text(f"**████████▒▒ 80%**")
+        await baby.edit_text(f"**█████████▒ 90%**")
+        await baby.edit_text(f"**██████████ 100%**")
+        await baby.edit_text(f"**❖ ʙᴏᴛ sᴛᴀʀᴛᴇᴅ..**")
+        await baby.delete()
+        
         await message.reply_video(
             random.choice(NEXI_VID),
             caption=_["start_2"].format(message.from_user.mention, app.mention),
