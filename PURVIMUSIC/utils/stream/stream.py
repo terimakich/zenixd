@@ -98,24 +98,19 @@ async def stream(
                     "video" if video else "audio",
                     forceplay=forceplay,
                 )
-                    img = await get_thumb(vidid)
-                    button = stream_markup(_, chat_id)
-                    run = await app.send_photo(
-                        original_chat_id,
-                        photo=img,
-                        caption=_["stream_1"].format(
-                            f"https://t.me/{app.username}?start=info_{vidid}",
-                            title[:23],
-                            duration_min,
-                            user_name,
-                        ),
-                        reply_markup=InlineKeyboardMarkup(button),
-                        parse_mode="HTML"
-                    )
-                    db[chat_id][0]["mystic"] = run
-                    db[chat_id][0]["markup"] = "stream"
-                except Exception as e:
-                    print(f"Error: {e}")
+                img = await get_thumb(vidid)  # 4 spaces or 1 tab
+                button = stream_markup(_, chat_id)  # 4 spaces or 1 tab
+                run = await app.send_photo(
+                    original_chat_id,  # 8 spaces or 2 tabs
+                    photo=img,  # 8 spaces or 2 tabs
+                    caption=caption,  # 8 spaces or 2 tabs
+                    reply_markup=InlineKeyboardMarkup(button),  # 8 spaces or 2 tabs
+                    parse_mode="HTML"  # 8 spaces or 2 tabs
+                )
+                db[chat_id][0]["mystic"] = run  # 4 spaces or 1 tab
+                db[chat_id][0]["markup"] = "stream"  # 4 spaces or 1 tab
+            except Exception as e:
+                print(f"Error: {e}")  # 4 spaces or 1 tab
              
         if count == 0:
             return
