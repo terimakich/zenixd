@@ -114,7 +114,7 @@ async def stream(
                 )
                 db[chat_id][0]["mystic"] = run
                 db[chat_id][0]["markup"] = "stream"
-                except Exception as e:
+             except Exception as e:
     print(f"Error: {e}")
              
         if count == 0:
