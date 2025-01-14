@@ -98,7 +98,7 @@ async def stream(
                     "video" if video else "audio",
                     forceplay=forceplay,
                 )
-                img = await get_thumb(vidid)  # 4 spaces
+img = await get_thumb(vidid)  # 4 spaces
 button = stream_markup(_, chat_id)  # 4 spaces
 try:
     run = await app.send_photo(
@@ -112,23 +112,24 @@ try:
     db[chat_id][0]["markup"] = "stream"  # 4 spaces
 except Exception as e:
     print(f"Error: {e}")  # 4 spaces
-             if count == 0:
-            return
-        else:
-            link = await PURVIBin(msg)
-            lines = msg.count("\n")
-            if lines >= 17:
-                car = os.linesep.join(msg.split(os.linesep)[:17])
-            else:
-                car = msg
-            carbon = await Carbon.generate(car, randint(100, 10000000))
-            upl = close_markup(_)
-            return await app.send_photo(
-                original_chat_id,
-                photo=carbon,
-                caption=_["play_21"].format(position, link),
-                reply_markup=upl,
-            )
+
+if count == 0:  # Ensure this is aligned with the function
+    return
+else:
+    link = await PURVIBin(msg)
+    lines = msg.count("\n")
+    if lines >= 17:
+        car = os.linesep.join(msg.split(os.linesep)[:17])
+    else:
+        car = msg
+    carbon = await Carbon.generate(car, randint(100, 10000000))
+    upl = close_markup(_)
+    return await app.send_photo(
+        original_chat_id,
+        photo=carbon,
+        caption=_["play_21"].format(position, link),
+        reply_markup=upl,
+    )
     elif streamtype == "youtube":
         link = result["link"]
         vidid = result["vidid"]
