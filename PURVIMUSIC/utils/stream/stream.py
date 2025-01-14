@@ -129,7 +129,7 @@ else:
         photo=carbon,
         caption=_["play_21"].format(position, link),
         reply_markup=upl,
-    )
+            )
     elif streamtype == "youtube":
         link = result["link"]
         vidid = result["vidid"]
