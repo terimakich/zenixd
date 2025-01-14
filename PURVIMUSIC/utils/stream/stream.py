@@ -110,10 +110,13 @@ async def stream(
                         user_name,
                     ),
                     reply_markup=InlineKeyboardMarkup(button),
-                    parse_mode=ParseMode.HTML # Add this to enable HTML formatting
+                    parse_mode="HTML" # Add this to enable HTML formatting
                 )
                 db[chat_id][0]["mystic"] = run
                 db[chat_id][0]["markup"] = "stream"
+                except Exception as e:
+    print(f"Error: {e}")
+             
         if count == 0:
             return
         else:
