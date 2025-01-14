@@ -112,8 +112,7 @@ try:
     db[chat_id][0]["markup"] = "stream"  # 4 spaces
 except Exception as e:
     print(f"Error: {e}")  # 4 spaces
-             
-        if count == 0:
+             if count == 0:
             return
         else:
             link = await PURVIBin(msg)
