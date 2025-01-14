@@ -14,7 +14,7 @@ from PURVIMUSIC.utils.inline import aq_markup, close_markup, stream_markup
 from PURVIMUSIC.utils.pastebin import PURVIBin
 from PURVIMUSIC.utils.stream.queue import put_queue, put_queue_index
 from PURVIMUSIC.utils.thumbnails import get_thumb
-
+from pyrogram.enums import ParseMode
 
 async def stream(
     _,
@@ -110,7 +110,7 @@ async def stream(
                         user_name,
                     ),
                     reply_markup=InlineKeyboardMarkup(button),
-                    parse_mode="HTML" # Add this to enable HTML formatting
+                    parse_mode=ParseMode.HTML # Add this to enable HTML formatting
                 )
                 db[chat_id][0]["mystic"] = run
                 db[chat_id][0]["markup"] = "stream"
