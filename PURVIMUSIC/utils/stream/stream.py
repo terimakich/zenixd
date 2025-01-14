@@ -14,7 +14,7 @@ from PURVIMUSIC.utils.inline import aq_markup, close_markup, stream_markup
 from PURVIMUSIC.utils.pastebin import PURVIBin
 from PURVIMUSIC.utils.stream.queue import put_queue, put_queue_index
 from PURVIMUSIC.utils.thumbnails import get_thumb
-from pyrogram.enums import ParseMode
+
 
 async def stream(
     _,
@@ -98,37 +98,37 @@ async def stream(
                     "video" if video else "audio",
                     forceplay=forceplay,
                 )
-img = await get_thumb(vidid)  # 4 spaces
-button = stream_markup(_, chat_id)  # 4 spaces
-try:
-    run = await app.send_photo(
-        original_chat_id,  # 8 spaces
-        photo=img,  # 8 spaces
-        caption=caption,  # 8 spaces
-        reply_markup=InlineKeyboardMarkup(button),  # 8 spaces
-        parse_mode="HTML"  # 8 spaces
-    )
-    db[chat_id][0]["mystic"] = run  # 4 spaces
-    db[chat_id][0]["markup"] = "stream"  # 4 spaces
-except Exception as e:
-    print(f"Error: {e}")  # 4 spaces
-
-if count == 0:  # Ensure this is aligned with the function
-    return
-else:
-    link = await PURVIBin(msg)
-    lines = msg.count("\n")
-    if lines >= 17:
-        car = os.linesep.join(msg.split(os.linesep)[:17])
-    else:
-        car = msg
-    carbon = await Carbon.generate(car, randint(100, 10000000))
-    upl = close_markup(_)
-    return await app.send_photo(
-        original_chat_id,
-        photo=carbon,
-        caption=_["play_21"].format(position, link),
-        reply_markup=upl,
+                img = await get_thumb(vidid)
+                button = stream_markup(_, chat_id)
+                run = await app.send_photo(
+                    original_chat_id,
+                    photo=img,
+                    caption=_["stream_1"].format(
+                        f"https://t.me/{app.username}?start=info_{vidid}",
+                        title[:23],
+                        duration_min,
+                        user_name,
+                    ),
+                    reply_markup=InlineKeyboardMarkup(button),
+                )
+                db[chat_id][0]["mystic"] = run
+                db[chat_id][0]["markup"] = "stream"
+        if count == 0:
+            return
+        else:
+            link = await PURVIBin(msg)
+            lines = msg.count("\n")
+            if lines >= 17:
+                car = os.linesep.join(msg.split(os.linesep)[:17])
+            else:
+                car = msg
+            carbon = await Carbon.generate(car, randint(100, 10000000))
+            upl = close_markup(_)
+            return await app.send_photo(
+                original_chat_id,
+                photo=carbon,
+                caption=_["play_21"].format(position, link),
+                reply_markup=upl,
             )
     elif streamtype == "youtube":
         link = result["link"]
