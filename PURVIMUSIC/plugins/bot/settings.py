@@ -98,7 +98,7 @@ async def gib_repo_callback(_, callback_query):
         media=InputMediaVideo(
             "https://files.catbox.moe/9r3hbf.mp4", 
             has_spoiler=True, 
-            caption="ʟᴜɴᴅ ʟᴇʟᴇ ᴍᴇʀᴀ 😒 ʀᴇᴘᴏ ᴋʏᴀ ᴋᴀʀᴇɢᴀ,\nʟᴇɢᴀ ᴋʏᴀ ʙʜᴏsᴀᴅɪᴋᴇ 😆 ʙᴏʟ ɴᴀ ʟᴇɢᴀ ??"
+            caption="**ʟᴜɴᴅ ʟᴇʟᴇ ᴍᴇʀᴀ 😒 ʀᴇᴘᴏ ᴋʏᴀ ᴋᴀʀᴇɢᴀ.**\n  **ʟᴇɢᴀ ᴋʏᴀ ʙʜᴏsᴀᴅɪᴋᴇ 😆 ʙᴏʟ ɴᴀ ʟᴇɢᴀ ??**"
         ),
         reply_markup=InlineKeyboardMarkup(
             [
