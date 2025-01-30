@@ -1,6 +1,9 @@
+import config
 from pyrogram import filters
-from pyrogram.enums import ChatType
+from time import time, strftime, gmtime
+from pyrogram import __version__ as pver
 from pyrogram.types import InputMediaVideo, InputMediaPhoto
+from pyrogram.enums import ChatType
 from pyrogram.errors import MessageNotModified
 from pyrogram.types import (
     CallbackQuery,
