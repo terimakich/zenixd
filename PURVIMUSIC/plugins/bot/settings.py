@@ -96,14 +96,13 @@ async def settings_back_markup(client, CallbackQuery: CallbackQuery, _):
 async def gib_repo_callback(_, callback_query):
     await callback_query.edit_message_media(
         media=InputMediaVideo(
-            "https://files.catbox.moe/wv5h32.mp4", 
+            "https://files.catbox.moe/9r3hbf.mp4", 
             has_spoiler=True, 
-            caption="ʟᴜɴᴅ ʟᴇʟᴇ ᴍᴇʀᴀ ʀᴇᴘᴏ ᴋʏᴀ ᴋᴀʀᴇɢᴀ, ʟᴇɢᴀ ᴋʏᴀ ʙʜᴏsᴀᴅɪᴋᴇ"
+            caption="ʟᴜɴᴅ ʟᴇʟᴇ ᴍᴇʀᴀ 😒 ʀᴇᴘᴏ ᴋʏᴀ ᴋᴀʀᴇɢᴀ,\nʟᴇɢᴀ ᴋʏᴀ ʙʜᴏsᴀᴅɪᴋᴇ 😆 ʙᴏʟ ɴᴀ ʟᴇɢᴀ ??"
         ),
         reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton(text="˹ ʙᴀᴄᴋ ˼", callback_data="settingsback_helper"),
                     InlineKeyboardButton(text="˹ ᴄʟᴏsᴇ ˼", callback_data="close")
                 ]
             ]
