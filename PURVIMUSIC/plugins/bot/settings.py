@@ -99,7 +99,7 @@ async def gib_repo_callback(_, callback_query):
         reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton(text="ʙᴀᴄᴋ❣️", callback_data="settingsback_helper"),
+                    InlineKeyboardButton(text="ʙᴀᴄᴋ❣️", callback_data="abot_cb"),
                     InlineKeyboardButton(text="ᴄʟᴏsᴇ❣️", callback_data="close")
                 ]
             ]
