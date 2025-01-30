@@ -1,5 +1,6 @@
 from pyrogram import filters
 from pyrogram.enums import ChatType
+from pyrogram.types import InputMediaVideo, InputMediaPhoto
 from pyrogram.errors import MessageNotModified
 from pyrogram.types import (
     CallbackQuery,
