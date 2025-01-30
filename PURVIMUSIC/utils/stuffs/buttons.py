@@ -13,9 +13,9 @@ class BUTTONS(object):
     ]
     ]
 
-    UBUTTON = [[InlineKeyboardButton("˹ ᴍᴜsɪᴄ ˼", callback_data="settings_back_helper"),InlineKeyboardButton("˹ ᴛᴏᴏʟs ˼", callback_data=f"tbot_cb")],[InlineKeyboardButton(" ʙᴧᴄᴋ ", callback_data=f"settingsback_helper"),
+    UBUTTON = [[InlineKeyboardButton("˹ ᴍᴜsɪᴄ ˼", callback_data="settings_back_helper"),InlineKeyboardButton("˹ ᴛᴏᴏʟs ˼", callback_data=f"tbot_cb")],[InlineKeyboardButton("˹ ʙᴧᴄᴋ ˼", callback_data=f"settingsback_helper"),
     ]]
 
     TBUTTON = [[InlineKeyboardButton("˹ ᴀᴄᴛɪᴠᴇ ˼", callback_data="cplus HELP_active"),InlineKeyboardButton("˹ ᴀᴜᴛʜ ˼", callback_data="cplus HELP_auth"),InlineKeyboardButton("˹ ʙʟᴏᴄᴋ ˼", callback_data="cplus HELP_block")],[InlineKeyboardButton("˹ ᴅᴇᴠ ˼", callback_data="cplus HELP_dev"),
-    InlineKeyboardButton("˹ ɢ-ᴄᴀsᴛ ˼", callback_data="cplus HELP_gcast")],[InlineKeyboardButton("↺ ʙᴧᴄᴋ ↻", callback_data=f"ubot_cb"),
+    InlineKeyboardButton("˹ ɢ-ᴄᴀsᴛ ˼", callback_data="cplus HELP_gcast")],[InlineKeyboardButton("˹ ʙᴧᴄᴋ ˼", callback_data=f"ubot_cb"),
     ]]
