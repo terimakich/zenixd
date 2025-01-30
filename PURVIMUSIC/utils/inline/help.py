@@ -29,7 +29,7 @@ def help_pannel(_, START: Union[bool, int] = None):
             ],
             [
                 InlineKeyboardButton(
-                    text="• ᴘ-ʟɪsᴛ •",
+                    text="• ᴘʟᴀʏ-ʟɪsᴛ •",
                     callback_data="help_callback hb8",
                 ),
                 InlineKeyboardButton(
@@ -48,7 +48,7 @@ def help_back_markup(_):
         [
             [
                 InlineKeyboardButton(
-                    text="↺ ʙᴧᴄᴋ ↻",
+                    text=" ʙᴧᴄᴋ ",
                     callback_data=f"settings_back_helper",
                 ),
                 InlineKeyboardButton(text="• ᴄʟᴏsᴇ •", callback_data=f"close"),
@@ -62,7 +62,7 @@ def help_back_markup2(_):
         [
             [
                 InlineKeyboardButton(
-                    text="↺ ʙᴧᴄᴋ ↻",
+                    text=" ʙᴧᴄᴋ ",
                     callback_data=f"tbot_cb",
                 ),
                 InlineKeyboardButton(text="• ᴄʟᴏsᴇ •", callback_data=f"close"),
