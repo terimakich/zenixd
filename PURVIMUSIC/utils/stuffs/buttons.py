@@ -8,7 +8,7 @@ class BUTTONS(object):
         InlineKeyboardButton("˹ ᴜᴘᴅᴧᴛᴇ ˼", url="https://t.me/The_Incricible")
     ],
     [
-        InlineKeyboardButton(text=_["S_B_7"], callback_data="gib_source"),
+        InlineKeyboardButton(text="˹ ʀєᴘσ ˼", callback_data="gib_source"),
         InlineKeyboardButton("↺ ʙᴧᴄᴋ ↻", callback_data=f"settingsback_helper")
     ]
     ]
