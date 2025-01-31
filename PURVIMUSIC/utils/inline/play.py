@@ -89,9 +89,9 @@ def stream_markup(_, chat_id):
             InlineKeyboardButton(text="▢", callback_data=f"ADMIN Stop|{chat_id}"),
          ],
         [
-             InlineKeyboardButton(text="๏ σᴡηєʀ ๏", url="https://t.me/PURVI_SUPPORT"),
+             InlineKeyboardButton(text="σᴡηєʀ", url="https://t.me/PURVI_SUPPORT"),
              InlineKeyboardButton(text="๏ ᴧᴅᴅ ϻє ๏", url=f"https://t.me/{app.username}?startgroup=true"),
-             InlineKeyboardButton(text="๏ ѕᴜᴘᴘσʀᴛ ๏", url="https://t.me/+gMy8Cp190ediNzZl")
+             InlineKeyboardButton(text="ѕᴜᴘᴘσʀᴛ", url="https://t.me/+gMy8Cp190ediNzZl")
          ],
         [
             InlineKeyboardButton(text=_["CLOSE_BUTTON"], callback_data="close"),
