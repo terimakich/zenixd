@@ -19,7 +19,7 @@ from PURVIMUSIC import app as bot
 
 #API_ID = os.environ.get("API_ID", "none") 
 #API_HASH = os.environ.get("API_HASH", "none")  
-#MONGO_URL = os.environ.get("MONGO_URL", "mongodb+srv://teamdaxx123:teamdaxx123@cluster0.ysbpgcp.mongodb.net/?retryWrites=true&w=majority")
+MONGO_URL = os.environ.get("MONGO_URL", "mongodb+srv://teamdaxx123:teamdaxx123@cluster0.ysbpgcp.mongodb.net/?retryWrites=true&w=majority")
 
 
 
