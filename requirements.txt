@@ -6,6 +6,7 @@ asyncio
 deepai
 python-whois
 dnspython
+deep_translator
 ffmpeg-python
 gitpython
 hachoir
