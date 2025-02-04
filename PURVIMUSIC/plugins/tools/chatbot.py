@@ -159,7 +159,7 @@ async def chatbot_response(client: Client, message: Message):
             return
         if (message.reply_to_message and message.reply_to_message.from_user):
             await client.send_chat_action(message.chat.id, ChatAction.TYPING)
-            reply_data = await get_reply(client, message, message.text if message.text else "")
+            reply_data = await get_reply(client, message, message.text)  # Pass message.text as the word argument
             if reply_data and "check" in reply_data:
                 response_text = reply_data["text"]
                 chat_lang = get_chat_language(message.chat.id)
