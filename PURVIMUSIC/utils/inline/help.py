@@ -6,7 +6,7 @@ from PURVIMUSIC import app
 
 
 def help_pannel(_, START: Union[bool, int] = None):
-    first = [InlineKeyboardButton(text="˹ ᴄʟᴏsᴇ ˼", callback_data=f"close")]
+    first = [InlineKeyboardButton(text="⌯ ᴄʟᴏsᴇ ⌯", callback_data=f"close")]
     second = [
         InlineKeyboardButton(
             text="⌯ ʙᴧᴄᴋ ⌯",
@@ -47,7 +47,7 @@ def help_back_markup(_):
                     text="⌯ ʙᴧᴄᴋ ⌯",
                     callback_data=f"settings_back_helper",
                 ),
-                InlineKeyboardButton(text="˹ ᴄʟᴏsᴇ ˼", callback_data=f"close"),
+                InlineKeyboardButton(text="⌯ ᴄʟᴏsᴇ ⌯", callback_data=f"close"),
             ],
         ]
     )
