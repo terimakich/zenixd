@@ -4,7 +4,7 @@ from pyrogram import Client, filters
 from pyrogram.enums import ChatAction, ChatMemberStatus
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, CallbackQuery
 from deep_translator import GoogleTranslator
-import config
+from config import MONGO_DB_URI as MONGO_URL
 from PURVIMUSIC import app
 
 # Database Connections
