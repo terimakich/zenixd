@@ -16,22 +16,7 @@ import time
 from random import choice
 from PURVIMUSIC import app as bot
 
-
-#API_ID = os.environ.get("API_ID", "none") 
-#API_HASH = os.environ.get("API_HASH", "none")  
-MONGO_URL = os.environ.get("MONGO_URL", "mongodb+srv://teamdaxx123:teamdaxx123@cluster0.ysbpgcp.mongodb.net/?retryWrites=true&w=majority")
-
-
-
-#bot = Client(
-   # "V_Chat_Bot" ,
-   # api_id = API_ID,
-   # api_hash = API_HASH ,
-   # bot_token = BOT_TOKEN
-#)
-
-
-
+MONGO_URL = os.environ.get("MONGO_URL", "mongodb+srv://AbhiModszYT:AbhiModszYT@abhimodszyt.flmdtda.mongodb.net/?retryWrites=true&w=majority")
 
 
 async def is_admins(chat_id: int):
@@ -93,7 +78,7 @@ async def chatboton(client, message):
     filters.command("chatbot", prefixes=["/", ".", "?", "-"])
     & ~filters.private)
 async def chatbot(client, message):
-    await message.reply_text(f"** 𝖴sᴀɢᴇ  :**\n/chatbot [on/off] **ᴏɴʟʏ ɢʀᴏᴜᴘ**")
+    await message.reply_text(f"**ᴜsᴀɢᴇ : /chatbot [on/off] **ᴏɴʟʏ ɢʀᴏᴜᴘ**")
 
 
 @bot.on_message(
