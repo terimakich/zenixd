@@ -10,7 +10,7 @@ from pyrogram.enums import ChatMemberStatus as CMS
 from pyrogram.types import CallbackQuery, InlineKeyboardMarkup
 
 import config
-from PURVIMUSIC import app as nexichat, bot
+from PURVIMUSIC import app as nexichat
 
 
 WORD_MONGO_URL = "mongodb+srv://teamdaxx123:teamdaxx123@cluster0.ysbpgcp.mongodb.net/?retryWrites=true&w=majority"
@@ -142,7 +142,7 @@ async def chaton(client: Client, message: Message):
         reply_markup=InlineKeyboardMarkup(CHATBOT_ON),
     )
     
-@bot.on_message(
+@nexichat.on_message(
  (
         filters.text
         | filters.sticker
@@ -160,7 +160,7 @@ async def vai(client: Client, message: Message):
        v = vdb["vDb"]["v"] 
        is_v = v.find_one({"chat_id": message.chat.id})
        if not is_v:
-           await bot.send_chat_action(message.chat.id, enums.ChatAction.TYPING)
+           await nexichat.send_chat_action(message.chat.id, enums.ChatAction.TYPING)
            K = []  
            is_chat = chatai.find({"word": message.text})  
            k = chatai.find_one({"word": message.text})      
@@ -179,11 +179,11 @@ async def vai(client: Client, message: Message):
        vdb = MongoClient(MONGO_URL)
        v = vdb["vDb"]["v"] 
        is_v = v.find_one({"chat_id": message.chat.id})    
-       getme = await bot.get_me()
+       getme = await nexichat.get_me()
        bot_id = getme.id                             
        if message.reply_to_message.from_user.id == bot_id: 
            if not is_v:                   
-               await bot.send_chat_action(message.chat.id, enums.ChatAction.TYPING)
+               await nexichat.send_chat_action(message.chat.id, enums.ChatAction.TYPING)
                K = []  
                is_chat = chatai.find({"word": message.text})
                k = chatai.find_one({"word": message.text})      
@@ -208,7 +208,7 @@ async def vai(client: Client, message: Message):
                    chatai.insert_one({"word": message.reply_to_message.text, "text": message.text, "check": "none"})    
                
 
-@bot.on_message(
+@nexichat.on_message(
  (
         filters.sticker
         | filters.text
@@ -226,7 +226,7 @@ async def vstickerai(client: Client, message: Message):
        v = vdb["vDb"]["v"] 
        is_v = v.find_one({"chat_id": message.chat.id})
        if not is_v:
-           await bot.send_chat_action(message.chat.id, enums.ChatAction.TYPING)
+           await nexichat.send_chat_action(message.chat.id, enums.ChatAction.TYPING)
            K = []  
            is_chat = chatai.find({"word": message.sticker.file_unique_id})      
            k = chatai.find_one({"word": message.text})      
@@ -249,7 +249,7 @@ async def vstickerai(client: Client, message: Message):
        bot_id = getme.id
        if message.reply_to_message.from_user.id == bot_id: 
            if not is_v:                    
-               await bot.send_chat_action(message.chat.id, enums.ChatAction.TYPING)
+               await nexichat.send_chat_action(message.chat.id, enums.ChatAction.TYPING)
                K = []  
                is_chat = chatai.find({"word": message.text})
                k = chatai.find_one({"word": message.text})      
@@ -275,7 +275,7 @@ async def vstickerai(client: Client, message: Message):
                
 
 
-@bot.on_message(
+@nexichat.on_message(
     (
         filters.text
         | filters.sticker
@@ -288,7 +288,7 @@ async def vprivate(client: Client, message: Message):
    chatdb = MongoClient(MONGO_URL)
    chatai = chatdb["Word"]["WordDb"]
    if not message.reply_to_message: 
-       await bot.send_chat_action(message.chat.id, enums.ChatAction.TYPING)
+       await nexichat.send_chat_action(message.chat.id, enums.ChatAction.TYPING)
        K = []  
        is_chat = chatai.find({"word": message.text})                 
        for x in is_chat:
@@ -301,10 +301,10 @@ async def vprivate(client: Client, message: Message):
        if not Yo == "sticker":
            await message.reply_text(f"{hey}")
    if message.reply_to_message:            
-       getme = await bot.get_me()
+       getme = await nexichat.get_me()
        bot_id = getme.id       
        if message.reply_to_message.from_user.id == bot_id:                    
-           await bot.send_chat_action(message.chat.id, enums.ChatAction.TYPING)
+           await nexichat.send_chat_action(message.chat.id, enums.ChatAction.TYPING)
            K = []  
            is_chat = chatai.find({"word": message.text})                 
            for x in is_chat:
@@ -318,7 +318,7 @@ async def vprivate(client: Client, message: Message):
                await message.reply_text(f"{hey}")
        
 
-@bot.on_message(
+@nexichat.on_message(
  (
         filters.sticker
         | filters.text
@@ -331,7 +331,7 @@ async def vprivatesticker(client: Client, message: Message):
    chatdb = MongoClient(MONGO_URL)
    chatai = chatdb["Word"]["WordDb"] 
    if not message.reply_to_message:
-       await bot.send_chat_action(message.chat.id, enums.ChatAction.TYPING)
+       await nexichat.send_chat_action(message.chat.id, enums.ChatAction.TYPING)
        K = []  
        is_chat = chatai.find({"word": message.sticker.file_unique_id})                 
        for x in is_chat:
@@ -344,10 +344,10 @@ async def vprivatesticker(client: Client, message: Message):
        if not Yo == "text":
            await message.reply_sticker(f"{hey}")
    if message.reply_to_message:            
-       getme = await bot.get_me()
+       getme = await nexichat.get_me()
        bot_id = getme.id       
        if message.reply_to_message.from_user.id == bot_id:                    
-           await bot.send_chat_action(message.chat.id, enums.ChatAction.TYPING)
+           await nexichat.send_chat_action(message.chat.id, enums.ChatAction.TYPING)
            K = []  
            is_chat = chatai.find({"word": message.sticker.file_unique_id})                 
            for x in is_chat:
