@@ -100,10 +100,15 @@ async def start_pm(client, message: Message, _):
     else:
         out = private_panel(_)
         baby = await message.reply_text(f"**ʜєʟʟᴏ ᴅєᴧʀ.❤️‍🩹**")
+        await asyncio.sleep(0.5)
         await baby.edit_text(f"**ɪ ᴧϻ ʜɪηᴧᴛᴧ ʜʏᴜɢᴧ..🦋**")
+        await asyncio.sleep(0.5)
         await baby.edit_text(f"**ʙєsᴛ ʟᴏʏᴧʟ ɢɪʀʟ ɪη...🫣**")
+        await asyncio.sleep(0.5)
         await baby.edit_text(f"**ᴧʟʟ ᴧηɪϻє ᴡσʀʟᴅ....🌝**")
+        await asyncio.sleep(0.5)
         await baby.edit_text(f"**ʜσᴡ ᴧʀє ʏσᴜ ᴛσᴅᴧʏ.....??**")
+        await asyncio.sleep(0.5)
         await baby.delete()
         
         await message.reply_photo(
