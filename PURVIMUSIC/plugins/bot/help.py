@@ -105,7 +105,7 @@ async def helper_cb(client, CallbackQuery, _):
 async def mb_plugin_button(client, CallbackQuery):
     callback_data = CallbackQuery.data.strip()
     cb = callback_data.split(None, 1)[1]
-    keyboard = InlineKeyboardMarkup([[InlineKeyboardButton("↺ ʙᴧᴄᴋ ↻", callback_data=f"tbot_cb")]])
+    keyboard = InlineKeyboardMarkup([[InlineKeyboardButton("⌯ ʙᴧᴄᴋ ⌯", callback_data=f"tbot_cb")]])
     if cb == "Okieeeeee":
         await CallbackQuery.edit_message_text(f"`something errors`",reply_markup=keyboard,parse_mode=enums.ParseMode.MARKDOWN)
     else:
@@ -115,7 +115,7 @@ async def mb_plugin_button(client, CallbackQuery):
 async def mb_plugin_button(client, CallbackQuery):
     callback_data = CallbackQuery.data.strip()
     cb = callback_data.split(None, 1)[1]
-    keyboard = InlineKeyboardMarkup([[InlineKeyboardButton("↺ ʙᴧᴄᴋ ↻", callback_data=f"ubot_cb")]])
+    keyboard = InlineKeyboardMarkup([[InlineKeyboardButton("⌯ ʙᴧᴄᴋ ⌯", callback_data=f"ubot_cb")]])
     if cb == "Okieeeeee":
         await CallbackQuery.edit_message_text(f"`something errors`",reply_markup=keyboard,parse_mode=enums.ParseMode.MARKDOWN)
     else:
