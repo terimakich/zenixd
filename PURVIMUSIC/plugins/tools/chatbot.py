@@ -143,6 +143,13 @@ async def chaton(client: Client, message: Message):
     )
     
 @nexichat.on_message((filters.text | filters.sticker | filters.photo | filters.video | filters.audio))
+async def get_reply(word: str):
+    is_chat = chatai.find({"word": word})
+    if is_chat:
+        random_reply = random.choice(list(is_chat))
+        return {"text": random_reply["text"], "check": random_reply.get("check", "none")}
+    return None
+
 async def chatbot_response(client: Client, message: Message):
     chat_status = status_db.find_one({"chat_id": message.chat.id})
     if chat_status and chat_status.get("status") == "disabled":
@@ -150,7 +157,7 @@ async def chatbot_response(client: Client, message: Message):
     if message.text:
         if any(message.text.startswith(prefix) for prefix in ["!", "/", ".", "?", "@", "#"]):
             return
-        if (message.reply_to_message and message.reply_to_message.from_user.id == client.me.id):
+        if (message.reply_to_message and message.reply_to_message.from_user):
             await client.send_chat_action(message.chat.id, ChatAction.TYPING)
             reply_data = await get_reply(message.text if message.text else "")
             if reply_data and "check" in reply_data:
@@ -174,14 +181,6 @@ async def chatbot_response(client: Client, message: Message):
                 await message.reply_text("**what??**")
     if message.reply_to_message:
         await save_reply(message.reply_to_message, message)
-
-async def get_reply(word: str):
-    is_chat = chatai.find({"word": word})
-    if is_chat:
-        random_reply = random.choice(list(is_chat))
-        return {"text": random_reply["text"], "check": random_reply.get("check", "none")}
-    return None
-
 
 async def save_reply(original_message: Message, reply_message: Message):
     if reply_message.sticker:
