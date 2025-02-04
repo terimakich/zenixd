@@ -10,10 +10,15 @@ import config
 
 # Database Connections
 MONGO_URL = config.MONGO_DB_URI
-WORD_MONGO_URL = "mongodb+srv://AbhiModszYT:AbhiModszYT@abhimodszyt.flmdtda.mongodb.net/?retryWrites=true&w=majority"
+WORD_MONGO_URL = "mongodb+srv://teamdaxx123:teamdaxx123@cluster0.ysbpgcp.mongodb.net/?retryWrites=true&w=majority"
 
 chatdb = MongoClient(MONGO_URL)
 worddb = MongoClient(WORD_MONGO_URL)
+
+db = MongoClient("mongodb+srv://teamdaxx123:teamdaxx123@cluster0.ysbpgcp.mongodb.net/?retryWrites=true&w=majority")
+chatai = db["Word"]["WordDb"]
+chatai.insert_one({"word": "hello", "text": "Hi! How can I help you?"})
+
 
 status_db = chatdb["ChatBotStatusDb"]["StatusCollection"]
 chatai = worddb["Word"]["WordDb"]
