@@ -144,11 +144,12 @@ async def chaton(client: Client, message: Message):
     
 @nexichat.on_message((filters.text | filters.sticker | filters.photo | filters.video | filters.audio))
 async def get_reply(word: str):
-    is_chat = chatai.find({"word": word})
+    is_chat = list(chatai.find({"word": word}))  # Convert cursor to list
     if is_chat:
-        random_reply = random.choice(list(is_chat))
+        random_reply = random.choice(is_chat)  # Choose a random reply
         return {"text": random_reply["text"], "check": random_reply.get("check", "none")}
     return None
+    
 
 async def chatbot_response(client: Client, message: Message):
     chat_status = status_db.find_one({"chat_id": message.chat.id})
