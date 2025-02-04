@@ -6,7 +6,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, 
 from deep_translator import GoogleTranslator
 from config import MONGO_DB_URI as MONGO_URL
 from PURVIMUSIC import app
-from config
+import config
 
 # Database Connections
 MONGO_URL = config.MONGO_DB_URI
