@@ -41,14 +41,9 @@ LOGGER_ID = int(getenv("LOGGER_ID", -1002141133985))
 OWNER_ID = int(getenv("OWNER_ID", 7403621976))
 # -----------------------------------------------------------------
 # -----------------------------------------------------------------
-
-# ----------------------------------------------------------------
-# ----------------------------------------------------------------
-# ----------------------------------------------------------------
 HEROKU_APP_NAME = getenv("HEROKU_APP_NAME")
 # ----------------------------------------------------------------
 HEROKU_API_KEY = getenv("HEROKU_API_KEY")
-# ----------------------------------------------------------------
 # ----------------------------------------------------------------
 # ----------------------------------------------------------------
 UPSTREAM_REPO = getenv(
@@ -61,14 +56,8 @@ GIT_TOKEN = getenv(
 )  # ----------------------------------------------------------------
 # -------------------------------------------------------------------
 
-
-# ------------------------------------------------------------------------
-# -------------------------------------------------------------------------
 SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/PURVI_SUPPORT")
 SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/PURVI_UPDATES")
-# ------------------------------------------------------------------------------
-# ------------------------------------------------------------------------------
-
 
 # --------------------------------------------------------------------------------
 # --------------------------------------------------------------------------------
@@ -77,9 +66,6 @@ AUTO_LEAVE_ASSISTANT_TIME = int(getenv("ASSISTANT_LEAVE_TIME", "9000"))
 SONG_DOWNLOAD_DURATION = int(getenv("SONG_DOWNLOAD_DURATION", "9999999"))
 SONG_DOWNLOAD_DURATION_LIMIT = int(getenv("SONG_DOWNLOAD_DURATION_LIMIT", "9999999"))
 # --------------------------------------------------------------------------------
-# --------------------------------------------------------------------------------
-# --------------------------------------------------------------------------------
-
 # ---------------------------------------------------------------------------------
 SPOTIFY_CLIENT_ID = getenv("SPOTIFY_CLIENT_ID", "1c21247d714244ddbb09925dac565aed")
 SPOTIFY_CLIENT_SECRET = getenv("SPOTIFY_CLIENT_SECRET", "709e1a2969664491b58200860623ef19")
@@ -91,19 +77,12 @@ SPOTIFY_CLIENT_SECRET = getenv("SPOTIFY_CLIENT_SECRET", "709e1a2969664491b582008
 # -----------------------------------------------------------------------------------
 PLAYLIST_FETCH_LIMIT = int(getenv("PLAYLIST_FETCH_LIMIT", 25))
 # ------------------------------------------------------------------------------------
-
-# ------------------------------------------------------------------------------------
 TG_AUDIO_FILESIZE_LIMIT = int(getenv("TG_AUDIO_FILESIZE_LIMIT", "5242880000"))
 TG_VIDEO_FILESIZE_LIMIT = int(getenv("TG_VIDEO_FILESIZE_LIMIT", "5242880000"))
+
 # --------------------------------------------------------------------------------------
 # ---------------------------------------------------------------------------------------
 
-
-
-# ------------------------------------
-# ------------------------------------
-# ------------------------------------
-# ------------------------------------
 STRING1 = getenv("STRING_SESSION", None)
 STRING2 = getenv("STRING_SESSION2", None)
 STRING3 = getenv("STRING_SESSION3", None)
@@ -118,37 +97,21 @@ votemode = {}
 autoclean = []
 confirmer = {}
 
-# ------------------------------------
-# ------------------------------------
-# ------------------------------------
-# ------------------------------------
+# ------------------------------------------------------------------------
+# ------------------------------------------------------------------------
+START_IMG_URL = getenv("START_IMG_URL", "https://files.catbox.moe/tfv75s.jpg")
+PING_IMG_URL = getenv("PING_IMG_URL", "https://files.catbox.moe/ankqmj.jpg")
+PLAYLIST_IMG_URL = "https://files.catbox.moe/2341d5.jpg"
+STATS_IMG_URL = "https://files.catbox.moe/hujk2j.jpg"
+TELEGRAM_AUDIO_URL = "https://files.catbox.moe/2y5o3g.jpg"
+TELEGRAM_VIDEO_URL = "https://files.catbox.moe/2y5o3g.jpg"
+STREAM_IMG_URL = "https://telegra.ph/file/d30d11c4365c025c25e3e.jpg"
+SOUNCLOUD_IMG_URL = "https://telegra.ph/file/d30d11c4365c025c25e3e.jpg"
+YOUTUBE_IMG_URL = "https://files.catbox.moe/2y5o3g.jpg"
+SPOTIFY_ARTIST_IMG_URL = "https://files.catbox.moe/2y5o3g.jpg"
+SPOTIFY_ALBUM_IMG_URL = "https://files.catbox.moe/2y5o3g.jpg"
+SPOTIFY_PLAYLIST_IMG_URL = "https://telegra.ph/file/d30d11c4365c025c25e3e.jpg"
 
-# ------------------------------------------------------------------------
-# ------------------------------------------------------------------------
-# ------------------------------------------------------------------------
-# ------------------------------------------------------------------------
-# ------------------------------------------------------------------------
-# ------------------------------------------------------------------------
-# ------------------------------------------------------------------------
-START_IMG_URL = getenv(
-    "START_IMG_URL", "https://telegra.ph/file/eb31c20889c5fca9e153f.jpg, https://telegra.ph/file/62a4a5c93f78df95a7d61.jpg, https://telegra.ph/file/af1b9fb2c83194a37c44d.jpg"
-)
-PING_IMG_URL = getenv(
-    "PING_IMG_URL", "https://files.catbox.moe/9cevdg.jpg"
-)
-PLAYLIST_IMG_URL = "https://files.catbox.moe/i493lf.jpg"
-STATS_IMG_URL = "https://files.catbox.moe/i0qmgf.jpg"
-TELEGRAM_AUDIO_URL = "https://telegra.ph/file/8e3552aa743ffdb6f18c9.jpg"
-TELEGRAM_VIDEO_URL = "https://telegra.ph/file/8e3552aa743ffdb6f18c9.jpg"
-STREAM_IMG_URL = "https://te.legra.ph/file/bd995b032b6bd263e2cc9.jpg"
-SOUNCLOUD_IMG_URL = "https://te.legra.ph/file/bb0ff85f2dd44070ea519.jpg"
-YOUTUBE_IMG_URL = "https://te.legra.ph/file/6298d377ad3eb46711644.jpg"
-SPOTIFY_ARTIST_IMG_URL = "https://te.legra.ph/file/37d163a2f75e0d3b403d6.jpg"
-SPOTIFY_ALBUM_IMG_URL = "https://te.legra.ph/file/b35fd1dfca73b950b1b05.jpg"
-SPOTIFY_PLAYLIST_IMG_URL = "https://te.legra.ph/file/95b3ca7993bbfaf993dcb.jpg"
-
-# ------------------------------------------------------------------------
-# ------------------------------------------------------------------------
 # ------------------------------------------------------------------------
 # ------------------------------------------------------------------------
 def time_to_seconds(time):
@@ -158,7 +121,7 @@ def time_to_seconds(time):
 
 DURATION_LIMIT = int(time_to_seconds(f"{DURATION_LIMIT_MIN}:00"))
 
-# -----------------------------------------------------------------------------
+
 # -----------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
 if SUPPORT_CHANNEL:
@@ -173,5 +136,4 @@ if SUPPORT_CHAT:
             "[ERROR] - Your SUPPORT_CHAT url is wrong. Please ensure that it starts with https://"
         )
 # ---------------------------------------------------------------------------------------
-# ----------------------------------------------------------------------------------------
 # ----------------------------------------------------------------------------------------
