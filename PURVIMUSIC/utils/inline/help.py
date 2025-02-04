@@ -9,7 +9,7 @@ def help_pannel(_, START: Union[bool, int] = None):
     first = [InlineKeyboardButton(text="˹ ᴄʟᴏsᴇ ˼", callback_data=f"close")]
     second = [
         InlineKeyboardButton(
-            text="˹ ʙᴧᴄᴋ ˼",
+            text="⌯ ʙᴧᴄᴋ ⌯",
             callback_data=f"ubot_cb",
         ),
        
@@ -19,17 +19,17 @@ def help_pannel(_, START: Union[bool, int] = None):
         [
             [
                 InlineKeyboardButton(
-                    text="˹ ᴀᴅᴍɪɴ ˼",
+                    text="⌯ ᴀᴅᴍɪɴ ⌯",
                     callback_data="help_callback hb2",
                 ),
                 InlineKeyboardButton(
-                    text="˹ ʙᴏᴛ ˼",
+                    text="⌯ ʙᴏᴛ ⌯",
                     callback_data="help_callback hb5",
-                ),
-                InlineKeyboardButton("˹ ᴅᴇᴠ ˼", callback_data="cplus HELP_dev"),
+                )],
+                [InlineKeyboardButton("˹ ᴅᴇᴠ ˼", callback_data="cplus HELP_dev"),
                 
                 InlineKeyboardButton(
-                    text="˹ ᴘʟᴀʏ ˼",
+                    text="⌯ ᴘʟᴀʏ ⌯",
                     callback_data="help_callback hb9",
                 ),
             ], 
@@ -44,7 +44,7 @@ def help_back_markup(_):
         [
             [
                 InlineKeyboardButton(
-                    text="˹ ʙᴧᴄᴋ ˼",
+                    text="⌯ ʙᴧᴄᴋ ⌯",
                     callback_data=f"settings_back_helper",
                 ),
                 InlineKeyboardButton(text="˹ ᴄʟᴏsᴇ ˼", callback_data=f"close"),
@@ -58,10 +58,10 @@ def help_back_markup2(_):
         [
             [
                 InlineKeyboardButton(
-                    text="˹ ʙᴧᴄᴋ ˼",
+                    text="⌯ ʙᴧᴄᴋ ⌯",
                     callback_data=f"tbot_cb",
                 ),
-                InlineKeyboardButton(text="˹ ᴄʟᴏsᴇ ˼", callback_data=f"close"),
+                InlineKeyboardButton(text="⌯ ᴄʟᴏsᴇ ⌯", callback_data=f"close"),
             ],
         ]
     )
@@ -72,7 +72,7 @@ def private_help_panel(_):
     buttons = [
         [
             InlineKeyboardButton(
-                text="˹ ᴏᴘᴇɴ ɪɴ ᴘʀɪᴠɪᴛᴇ ˼", url=f"https://t.me/{app.username}?start=help"
+                text="⌯ ᴏᴘᴇɴ ɪɴ ᴘʀɪᴠɪᴛᴇ ⌯", url=f"https://t.me/{app.username}?start=help"
             ),
         ],
     ]
