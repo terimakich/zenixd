@@ -10,7 +10,7 @@ from pyrogram.enums import ChatMemberStatus as CMS
 from pyrogram.types import CallbackQuery, InlineKeyboardMarkup
 
 import config
-from PURVIMUSIC import app as nexichat as bot
+from PURVIMUSIC import app as nexichat, bot
 
 
 WORD_MONGO_URL = "mongodb+srv://teamdaxx123:teamdaxx123@cluster0.ysbpgcp.mongodb.net/?retryWrites=true&w=majority"
