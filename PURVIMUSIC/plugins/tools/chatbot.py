@@ -10,7 +10,7 @@ from pyrogram.enums import ChatMemberStatus as CMS
 from pyrogram.types import CallbackQuery, InlineKeyboardMarkup
 
 import config
-from PURVIMUSIC import app as nexichat
+from PURVIMUSIC import app as nexichat as bot
 
 
 WORD_MONGO_URL = "mongodb+srv://teamdaxx123:teamdaxx123@cluster0.ysbpgcp.mongodb.net/?retryWrites=true&w=majority"
@@ -142,126 +142,223 @@ async def chaton(client: Client, message: Message):
         reply_markup=InlineKeyboardMarkup(CHATBOT_ON),
     )
     
-@nexichat.on_message((filters.text | filters.sticker | filters.photo | filters.video | filters.audio))
-async def get_reply(client, message):
-    word = message.text  # Assuming the word to reply to is the text of the message
-    is_chat = list(chatai.find({"word": word}))  # Convert cursor to list
-    if is_chat:
-        random_reply = random.choice(is_chat)  # Choose a random reply
-        return {"text": random_reply["text"], "check": random_reply.get("check", "none")}
-    return None
-    
-    
+@bot.on_message(
+ (
+        filters.text
+        | filters.sticker
+    )
+    & ~filters.private
+    & ~filters.bot,
+)
+async def vai(client: Client, message: Message):
 
-async def chatbot_response(client: Client, message: Message):
-    chat_status = status_db.find_one({"chat_id": message.chat.id})
-    if chat_status and chat_status.get("status") == "disabled":
-        return
-    if message.text:
-        if any(message.text.startswith(prefix) for prefix in ["!", "/", ".", "?", "@", "#"]):
-            return
-        if (message.reply_to_message and message.reply_to_message.from_user):
-            await client.send_chat_action(message.chat.id, ChatAction.TYPING)
-            reply_data = await get_reply(message.text)  # Pass message.text as the word argument
-            if reply_data and "check" in reply_data:
-                response_text = reply_data["text"]
-                chat_lang = get_chat_language(message.chat.id)
-                if not chat_lang or chat_lang == "en":
-                    translated_text = response_text
-                else:
-                    translated_text = GoogleTranslator(source='auto', target=chat_lang).translate(response_text)
-                if reply_data["check"] == "sticker":
-                    await message.reply_sticker(translated_text)
-                elif reply_data["check"] == "photo":
-                    await message.reply_photo(translated_text)
-                elif reply_data["check"] == "video":
-                    await message.reply_video(translated_text)
-                elif reply_data["check"] == "audio":
-                    await message.reply_audio(translated_text)
-                else:
-                    await message.reply_text(translated_text)
-            else:
-                await message.reply_text("**what??**")
-    if message.reply_to_message:
-        await save_reply(message.reply_to_message, message)
+   chatdb = MongoClient(MONGO_URL)
+   chatai = chatdb["Word"]["WordDb"]   
 
-async def save_reply(original_message: Message, reply_message: Message):
-    if reply_message.sticker:
-        is_chat = chatai.find_one(
-            {
-                "word": original_message.text,
-                "text": reply_message.sticker.file_id,
-                "check": "sticker",
-            }
-        )
-        if not is_chat:
-            chatai.insert_one(
-                {
-                    "word": original_message.text,
-                    "text": reply_message.sticker.file_id,
-                    "check": "sticker",
-                }
-            )
-    elif reply_message.photo:
-        is_chat = chatai.find_one(
-            {
-                "word": original_message.text,
-                "text": reply_message.photo.file_id,
-                "check": "photo",
-            }
-        )
-        if not is_chat:
-            chatai.insert_one(
-                {
-                    "word": original_message.text,
-                    "text": reply_message.photo.file_id,
-                    "check": "photo",
-                }
-            )
-    elif reply_message.video:
-        is_chat = chatai.find_one(
-            {
-                "word": original_message.text,
-                "text": reply_message.video.file_id,
-                "check": "video",
-            }
-        )
-        if not is_chat:
-            chatai.insert_one(
-                {
-                    "word": original_message.text,
-                    "text": reply_message.video.file_id,
-                    "check": "video",
-                }
-            )
-    elif reply_message.audio:
-        is_chat = chatai.find_one(
-            {
-                "word": original_message.text,
-                "text": reply_message.audio.file_id,
-                "check": "audio",
-            }
-        )
-        if not is_chat:
-            chatai.insert_one(
-                {
-                    "word": original_message.text,
-                    "text": reply_message.audio.file_id,
-                    "check": "audio",
-                }
-            )
-    elif reply_message.text:
-        is_chat = chatai.find_one(
-            {"word": original_message.text, "text": reply_message.text}
-        )
-        if not is_chat:
-            chatai.insert_one(
-                {
-                    "word": original_message.text,
-                    "text": reply_message.text,
-                    "check": "none",
-                }
-            )
+   if not message.reply_to_message:
+       vdb = MongoClient(MONGO_URL)
+       v = vdb["vDb"]["v"] 
+       is_v = v.find_one({"chat_id": message.chat.id})
+       if not is_v:
+           await bot.send_chat_action(message.chat.id, enums.ChatAction.TYPING)
+           K = []  
+           is_chat = chatai.find({"word": message.text})  
+           k = chatai.find_one({"word": message.text})      
+           if k:               
+               for x in is_chat:
+                   K.append(x['text'])          
+               hey = random.choice(K)
+               is_text = chatai.find_one({"text": hey})
+               Yo = is_text['check']
+               if Yo == "sticker":
+                   await message.reply_sticker(f"{hey}")
+               if not Yo == "sticker":
+                   await message.reply_text(f"{hey}")
+   
+   if message.reply_to_message:  
+       vdb = MongoClient(MONGO_URL)
+       v = vdb["vDb"]["v"] 
+       is_v = v.find_one({"chat_id": message.chat.id})    
+       getme = await bot.get_me()
+       bot_id = getme.id                             
+       if message.reply_to_message.from_user.id == bot_id: 
+           if not is_v:                   
+               await bot.send_chat_action(message.chat.id, enums.ChatAction.TYPING)
+               K = []  
+               is_chat = chatai.find({"word": message.text})
+               k = chatai.find_one({"word": message.text})      
+               if k:       
+                   for x in is_chat:
+                       K.append(x['text'])
+                   hey = random.choice(K)
+                   is_text = chatai.find_one({"text": hey})
+                   Yo = is_text['check']
+                   if Yo == "sticker":
+                       await message.reply_sticker(f"{hey}")
+                   if not Yo == "sticker":
+                       await message.reply_text(f"{hey}")
+       if not message.reply_to_message.from_user.id == bot_id:          
+           if message.sticker:
+               is_chat = chatai.find_one({"word": message.reply_to_message.text, "id": message.sticker.file_unique_id})
+               if not is_chat:
+                   chatai.insert_one({"word": message.reply_to_message.text, "text": message.sticker.file_id, "check": "sticker", "id": message.sticker.file_unique_id})
+           if message.text:                 
+               is_chat = chatai.find_one({"word": message.reply_to_message.text, "text": message.text})                 
+               if not is_chat:
+                   chatai.insert_one({"word": message.reply_to_message.text, "text": message.text, "check": "none"})    
+               
+
+@bot.on_message(
+ (
+        filters.sticker
+        | filters.text
+    )
+    & ~filters.private
+    & ~filters.bot,
+)
+async def vstickerai(client: Client, message: Message):
+
+   chatdb = MongoClient(MONGO_URL)
+   chatai = chatdb["Word"]["WordDb"]   
+
+   if not message.reply_to_message:
+       vdb = MongoClient(MONGO_URL)
+       v = vdb["vDb"]["v"] 
+       is_v = v.find_one({"chat_id": message.chat.id})
+       if not is_v:
+           await bot.send_chat_action(message.chat.id, enums.ChatAction.TYPING)
+           K = []  
+           is_chat = chatai.find({"word": message.sticker.file_unique_id})      
+           k = chatai.find_one({"word": message.text})      
+           if k:           
+               for x in is_chat:
+                   K.append(x['text'])
+               hey = random.choice(K)
+               is_text = chatai.find_one({"text": hey})
+               Yo = is_text['check']
+               if Yo == "text":
+                   await message.reply_text(f"{hey}")
+               if not Yo == "text":
+                   await message.reply_sticker(f"{hey}")
+   
+   if message.reply_to_message:
+       vdb = MongoClient(MONGO_URL)
+       v = vdb["vDb"]["v"] 
+       is_v = v.find_one({"chat_id": message.chat.id})
+       getme = await bot.get_me()
+       bot_id = getme.id
+       if message.reply_to_message.from_user.id == bot_id: 
+           if not is_v:                    
+               await bot.send_chat_action(message.chat.id, enums.ChatAction.TYPING)
+               K = []  
+               is_chat = chatai.find({"word": message.text})
+               k = chatai.find_one({"word": message.text})      
+               if k:           
+                   for x in is_chat:
+                       K.append(x['text'])
+                   hey = random.choice(K)
+                   is_text = chatai.find_one({"text": hey})
+                   Yo = is_text['check']
+                   if Yo == "text":
+                       await message.reply_text(f"{hey}")
+                   if not Yo == "text":
+                       await message.reply_sticker(f"{hey}")
+       if not message.reply_to_message.from_user.id == bot_id:          
+           if message.text:
+               is_chat = chatai.find_one({"word": message.reply_to_message.sticker.file_unique_id, "text": message.text})
+               if not is_chat:
+                   toggle.insert_one({"word": message.reply_to_message.sticker.file_unique_id, "text": message.text, "check": "text"})
+           if message.sticker:                 
+               is_chat = chatai.find_one({"word": message.reply_to_message.sticker.file_unique_id, "text": message.sticker.file_id})                 
+               if not is_chat:
+                   chatai.insert_one({"word": message.reply_to_message.sticker.file_unique_id, "text": message.sticker.file_id, "check": "none"})    
+               
+
+
+@bot.on_message(
+    (
+        filters.text
+        | filters.sticker
+    )
+    & filters.private
+    & ~filters.bot,
+)
+async def vprivate(client: Client, message: Message):
+
+   chatdb = MongoClient(MONGO_URL)
+   chatai = chatdb["Word"]["WordDb"]
+   if not message.reply_to_message: 
+       await bot.send_chat_action(message.chat.id, enums.ChatAction.TYPING)
+       K = []  
+       is_chat = chatai.find({"word": message.text})                 
+       for x in is_chat:
+           K.append(x['text'])
+       hey = random.choice(K)
+       is_text = chatai.find_one({"text": hey})
+       Yo = is_text['check']
+       if Yo == "sticker":
+           await message.reply_sticker(f"{hey}")
+       if not Yo == "sticker":
+           await message.reply_text(f"{hey}")
+   if message.reply_to_message:            
+       getme = await bot.get_me()
+       bot_id = getme.id       
+       if message.reply_to_message.from_user.id == bot_id:                    
+           await bot.send_chat_action(message.chat.id, enums.ChatAction.TYPING)
+           K = []  
+           is_chat = chatai.find({"word": message.text})                 
+           for x in is_chat:
+               K.append(x['text'])
+           hey = random.choice(K)
+           is_text = chatai.find_one({"text": hey})
+           Yo = is_text['check']
+           if Yo == "sticker":
+               await message.reply_sticker(f"{hey}")
+           if not Yo == "sticker":
+               await message.reply_text(f"{hey}")
+       
+
+@bot.on_message(
+ (
+        filters.sticker
+        | filters.text
+    )
+    & filters.private
+    & ~filters.bot,
+)
+async def vprivatesticker(client: Client, message: Message):
+
+   chatdb = MongoClient(MONGO_URL)
+   chatai = chatdb["Word"]["WordDb"] 
+   if not message.reply_to_message:
+       await bot.send_chat_action(message.chat.id, enums.ChatAction.TYPING)
+       K = []  
+       is_chat = chatai.find({"word": message.sticker.file_unique_id})                 
+       for x in is_chat:
+           K.append(x['text'])
+       hey = random.choice(K)
+       is_text = chatai.find_one({"text": hey})
+       Yo = is_text['check']
+       if Yo == "text":
+           await message.reply_text(f"{hey}")
+       if not Yo == "text":
+           await message.reply_sticker(f"{hey}")
+   if message.reply_to_message:            
+       getme = await bot.get_me()
+       bot_id = getme.id       
+       if message.reply_to_message.from_user.id == bot_id:                    
+           await bot.send_chat_action(message.chat.id, enums.ChatAction.TYPING)
+           K = []  
+           is_chat = chatai.find({"word": message.sticker.file_unique_id})                 
+           for x in is_chat:
+               K.append(x['text'])
+           hey = random.choice(K)
+           is_text = chatai.find_one({"text": hey})
+           Yo = is_text['check']
+           if Yo == "text":
+               await message.reply_text(f"{hey}")
+           if not Yo == "text":
+               await message.reply_sticker(f"{hey}")
 
 
 @nexichat.on_callback_query()
