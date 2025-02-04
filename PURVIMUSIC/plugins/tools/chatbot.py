@@ -143,7 +143,7 @@ async def chaton(client: Client, message: Message):
     )
     
 @nexichat.on_message((filters.text | filters.sticker | filters.photo | filters.video | filters.audio))
-async def get_reply(word: str):
+async def get_reply(client: Client, message: Message, word: str):
     is_chat = chatai.find({"word": word})
     if is_chat:
         random_reply = random.choice(list(is_chat))
@@ -159,7 +159,7 @@ async def chatbot_response(client: Client, message: Message):
             return
         if (message.reply_to_message and message.reply_to_message.from_user):
             await client.send_chat_action(message.chat.id, ChatAction.TYPING)
-            reply_data = await get_reply(message.text if message.text else "")
+            reply_data = await get_reply(client, message, message.text if message.text else "")
             if reply_data and "check" in reply_data:
                 response_text = reply_data["text"]
                 chat_lang = get_chat_language(message.chat.id)
