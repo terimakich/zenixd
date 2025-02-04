@@ -99,18 +99,11 @@ async def start_pm(client, message: Message, _):
                 )
     else:
         out = private_panel(_)
-        baby = await message.reply_text(f"**▒▒▒▒▒▒▒▒▒▒ 0%**")
-        await baby.edit_text(f"**█▒▒▒▒▒▒▒▒▒ 10%**")
-        await baby.edit_text(f"**██▒▒▒▒▒▒▒▒ 20%**")
-        await baby.edit_text(f"**███▒▒▒▒▒▒▒ 30%**")
-        await baby.edit_text(f"**████▒▒▒▒▒▒ 40%**")
-        await baby.edit_text(f"**█████▒▒▒▒▒ 50%**")
-        await baby.edit_text(f"**██████▒▒▒▒ 60%**")
-        await baby.edit_text(f"**███████▒▒▒ 70%**")
-        await baby.edit_text(f"**████████▒▒ 80%**")
-        await baby.edit_text(f"**█████████▒ 90%**")
-        await baby.edit_text(f"**██████████ 100%**")
-        await baby.edit_text(f"**❖ ʙᴏᴛ sᴛᴀʀᴛᴇᴅ..**")
+        baby = await message.reply_text(f"**ʜєʟʟᴏ ᴅєᴧʀ.❤️‍🩹**")
+        await baby.edit_text(f"**ɪ ᴧϻ ʜɪηᴧᴛᴧ ʜʏᴜɢᴧ..🦋**")
+        await baby.edit_text(f"**ʙєsᴛ ʟᴏʏᴧʟ ɢɪʀʟ ɪη...🫣**")
+        await baby.edit_text(f"**ᴧʟʟ ᴧηɪϻє ᴡσʀʟᴅ....🌝**")
+        await baby.edit_text(f"**ʜσᴡ ᴧʀє ʏσᴜ ᴛσᴅᴧʏ.....??**")
         await baby.delete()
         
         await message.reply_photo(
