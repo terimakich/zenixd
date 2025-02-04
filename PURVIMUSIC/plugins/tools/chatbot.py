@@ -249,7 +249,7 @@ async def vstickerai(client: Client, message: Message):
        bot_id = getme.id
        if message.reply_to_message.from_user.id == bot_id: 
            if not is_v:                    
-               await nexichat.send_chat_action(message.chat.id, enums.ChatAction.TYPING)
+               await nexichat.send_chat_action(message.chat.id, ChatAction.TYPING)
                K = []  
                is_chat = chatai.find({"word": message.text})
                k = chatai.find_one({"word": message.text})      
