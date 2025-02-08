@@ -92,16 +92,16 @@ async def chatbot_callback(client, query: CallbackQuery):
         await query.answer("🚫 ᴄʜᴀᴛʙᴏᴛ ᴅɪsᴀʙʟᴇᴅ !!", show_alert=True)
         await query.edit_message_text(f"**✦ ᴄʜᴀᴛʙᴏᴛ ʜᴀs ʙᴇᴇɴ ᴅɪsᴀʙʟᴇᴅ ɪɴ {query.message.chat.title}.**")
 
-# ✅ Bot Start Par Chatbot Enable Karna (on_start)
-@bot.on_start()
-async def enable_chatbot_on_start(client):
-    # Automatically enable chatbot when the bot starts
+# ✅ Bot Ready Par Chatbot Enable Karna (on_ready)
+@bot.on_ready()
+async def enable_chatbot_on_ready(client):
+    # Automatically enable chatbot when the bot is ready
     all_chats = await bot.get_dialogs()
     for chat in all_chats:
         chat_id = chat.chat.id
         status_data = await status_db.find_one({"chat_id": chat_id})
         if not status_data:
-            # If no status found, enable chatbot
+            # Automatically enable chatbot
             status_db.update_one({"chat_id": chat_id}, {"$set": {"status": "enabled"}}, upsert=True)
 
 # ✅ Bot Group mein Add Hone Par Chatbot Enable Karna (on_user_join)
