@@ -400,10 +400,10 @@ async def chatbot_reply(client, message: Message):
 
 
 # ✅ Function to Save Chat to MongoDB
-async def save_chat_to_db(chat_id, text, sticker=None):
-    data = {
-        "chat_id": chat_id,
-        "text": text,
-        "sticker": sticker.file_unique_id if sticker else None,
-    }
-    await chatai_db.insert_one(data)
+#async def save_chat_to_db(chat_id, text, sticker=None):
+    #data = {
+        #"chat_id": chat_id,
+       # "text": text,
+      #  "sticker": sticker.file_unique_id if sticker else None,
+   # }
+   # await chatai_db.insert_one(data)
