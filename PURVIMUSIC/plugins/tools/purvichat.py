@@ -250,7 +250,8 @@ CHATBOT_ON = [
     ],
 ]
 
-# ✅ /chatbot Command with Buttons
+
+# ✅ /chatbot Command with Buttons (Updated)
 @bot.on_message(filters.command("chatbot") & filters.group)
 async def chatbot_control(client, message: Message):
     chat_id = message.chat.id
@@ -259,14 +260,21 @@ async def chatbot_control(client, message: Message):
     if not await is_admin(chat_id, user_id):
         return await message.reply_text("❍ ʏᴏᴜ ᴀʀᴇ ɴᴏᴛ ᴀɴ ᴀᴅᴍɪɴ !!")
 
+    # Fetch current status from MongoDB
+    status_data = await status_db.find_one({"chat_id": chat_id})
+    current_status = status_data['status'] if status_data else "disabled"
+
+    # Send chatbot control panel
     await message.reply_text(
         f"**๏ ᴄʜᴀᴛʙᴏᴛ ᴄᴏɴᴛʀᴏʟ ᴘᴀɴɴᴇʟ**\n\n"
         f"**✦ ᴄʜᴀᴛ ɴᴀᴍᴇ : {message.chat.title}**\n"
-        f"**✦ ᴄʜᴏᴏsᴇ ᴀɴ ᴏᴘᴛɪᴏɴ ᴛᴏ ᴇɴᴀʙʟᴇ / ᴅɪsᴀʙʟᴇ ᴄʜᴀᴛʙᴏᴛ.**",
+        f"**✦ ᴄʜᴏᴏsᴇ ᴀɴ ᴏᴘᴛɪᴏɴ ᴛᴏ ᴇɴᴀʙʟᴇ / ᴅɪsᴀʙʟᴇ ᴄʜᴀᴛʙᴏᴛ.**"
+        f"\n**✦ ᴄᴜʀʀᴇɴᴛ ᴄʜᴀᴛʙᴏᴛ sᴛᴀᴛᴜsᴇ : {current_status.capitalize()}**",
         reply_markup=InlineKeyboardMarkup(CHATBOT_ON),
     )
 
-# ✅ Callback for Enable/Disable Buttons
+
+# ✅ Callback for Enable/Disable Buttons (Updated)
 @bot.on_callback_query(filters.regex(r"enable_chatbot|disable_chatbot"))
 async def chatbot_callback(client, query: CallbackQuery):
     chat_id = query.message.chat.id
@@ -277,6 +285,7 @@ async def chatbot_callback(client, query: CallbackQuery):
 
     action = query.data
 
+    # Update chatbot status in MongoDB
     if action == "enable_chatbot":
         status_db.update_one({"chat_id": chat_id}, {"$set": {"status": "enabled"}}, upsert=True)
         await query.answer("✅ ᴄʜᴀᴛʙᴏᴛ ᴇɴᴀʙʟᴇᴅ !!", show_alert=True)
@@ -285,9 +294,9 @@ async def chatbot_callback(client, query: CallbackQuery):
         status_db.update_one({"chat_id": chat_id}, {"$set": {"status": "disabled"}}, upsert=True)
         await query.answer("🚫 ᴄʜᴀᴛʙᴏᴛ ᴅɪsᴀʙʟᴇᴅ !!", show_alert=True)
         await query.edit_message_text(f"**✦ ᴄʜᴀᴛʙᴏᴛ ʜᴀs ʙᴇᴇɴ ᴅɪsᴀʙʟᴇᴅ ɪɴ {query.message.chat.title}.**")
-        
 
-# ✅ Main Chatbot Handler (Text & Stickers)
+
+# ✅ Main Chatbot Handler (Text & Stickers) with Save Chat to MongoDB
 @bot.on_message(filters.text | filters.sticker)
 async def chatbot_reply(client, message: Message):
     chat_id = message.chat.id
@@ -297,11 +306,19 @@ async def chatbot_reply(client, message: Message):
     # Typing indicator show karna
     await bot.send_chat_action(chat_id, ChatAction.TYPING)
 
+    # Check if the chatbot is enabled for this group
+    status_data = await status_db.find_one({"chat_id": chat_id})
+    if not status_data or status_data['status'] == "disabled":
+        return
+
     # Agar message mein koi bad word ho
     if re.search(bad_word_regex, text):
         await message.delete()
-        await message.reply_text("**ᴘʟᴇᴀsᴇ :** ᴅᴏɴ'ᴛ sᴇɴᴅ ʙᴀᴅ ᴡᴏʀᴅ ᴛʏᴘᴇ ᴍᴇssᴀɢᴇs ᴀᴘɴᴀ ʙᴇʜᴀᴠɪᴏᴜʀ ᴄʜᴀɴɢᴇ ᴋᴀʀᴇ ᴘʟᴇsᴀsᴇ 🙂.")
+        await message.reply_text("**ᴘʟᴇᴀsᴇ :** ᴅᴏɴ'ᴛ sᴇɴᴅ ʙᴀᴅ ᴡᴏʀᴅ ᴛʏᴘᴇ ᴍᴇssᴀɢᴇs ᴀᴘɴᴀ ʙᴇʜᴀᴠɪᴏʀ ᴄʜᴀɴɢᴇ ᴋᴀʀᴇ ᴘʟᴇsᴀsᴇ 🙂.")
         return
+
+    # Save the chat (for monitoring and learning purposes)
+    await save_chat_to_db(chat_id, text, message.sticker)
 
     # Agar message group mein hai
     if message.chat.type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
@@ -380,4 +397,13 @@ async def chatbot_reply(client, message: Message):
             await message.reply_text(result)
         else:
             await message.reply_text(f"❍ ᴇʀʀᴏʀ: API failed. Status: {response.status_code}")
-                
+
+
+# ✅ Function to Save Chat to MongoDB
+async def save_chat_to_db(chat_id, text, sticker=None):
+    data = {
+        "chat_id": chat_id,
+        "text": text,
+        "sticker": sticker.file_unique_id if sticker else None,
+    }
+    await chatai_db.insert_one(data)
