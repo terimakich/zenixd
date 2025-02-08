@@ -54,7 +54,7 @@ async def chatbot_on(client, message: Message):
 async def chatbot_usage(client, message: Message):
     await message.reply_text("**Usage: /chatbot [on/off] only for groups.**")
 
-# Function to handle incoming messages for group chats
+# Fix in the handle_group_messages function where you iterate over the AsyncIOMotorCursor
 @bot.on_message((filters.text | filters.sticker) & ~filters.private & ~filters.bot)
 async def handle_group_messages(client, message: Message):
     chat_id = message.chat.id
@@ -63,10 +63,10 @@ async def handle_group_messages(client, message: Message):
         if not is_v:
             await bot.send_chat_action(chat_id, enums.ChatAction.TYPING)
             K = []
-            is_chat = chatai_db.find({"word": message.text})
+            is_chat = chatai_db.find({"word": message.text})  # Returns an AsyncIOMotorCursor
             k = await chatai_db.find_one({"word": message.text})
             if k:
-                for x in is_chat:
+                async for x in is_chat:  # Use async for to iterate over the cursor
                     K.append(x['text'])
                 response = random.choice(K)
                 is_text = await chatai_db.find_one({"text": response})
@@ -74,7 +74,6 @@ async def handle_group_messages(client, message: Message):
                     await message.reply_sticker(response)
                 else:
                     await message.reply_text(response)
-
     else:
         is_v = await vdb.find_one({"chat_id": chat_id})
         bot_id = (await bot.get_me()).id
@@ -82,10 +81,10 @@ async def handle_group_messages(client, message: Message):
             if not is_v:
                 await bot.send_chat_action(chat_id, enums.ChatAction.TYPING)
                 K = []
-                is_chat = chatai_db.find({"word": message.text})
+                is_chat = chatai_db.find({"word": message.text})  # Returns an AsyncIOMotorCursor
                 k = await chatai_db.find_one({"word": message.text})
                 if k:
-                    for x in is_chat:
+                    async for x in is_chat:  # Use async for to iterate over the cursor
                         K.append(x['text'])
                     response = random.choice(K)
                     is_text = await chatai_db.find_one({"text": response})
@@ -107,22 +106,5 @@ async def handle_group_messages(client, message: Message):
                 is_chat = await chatai_db.find_one({"word": message.reply_to_message.text, "text": message.text})
                 if not is_chat:
                     await chatai_db.insert_one({"word": message.reply_to_message.text, "text": message.text, "check": "none"})
-
-# Function to handle private messages (direct messages to the bot)
-@bot.on_message((filters.text | filters.sticker) & filters.private & ~filters.bot)
-async def handle_private_messages(client, message: Message):
-    chat_id = message.chat.id
-    await bot.send_chat_action(chat_id, enums.ChatAction.TYPING)
-    K = []
-    is_chat = chatai_db.find({"word": message.text})
-    for x in is_chat:
-        K.append(x['text'])
-    response = random.choice(K)
-    is_text = await chatai_db.find_one({"text": response})
-    if is_text['check'] == "sticker":
-        await message.reply_sticker(response)
-    else:
-        await message.reply_text(response)
-
 # Start the bot
 idle()
