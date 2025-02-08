@@ -93,6 +93,11 @@ async def chatbot_reply(client, message: Message):
     text = message.text.strip() if message.text else ""
     bot_username = (await bot.get_me()).username.lower()
 
+    # First, check if the chatbot is enabled for the current chat
+    chat_status = await status_db.find_one({"chat_id": chat_id})
+    if chat_status and chat_status.get("status") == "disabled":
+        return  # If chatbot is disabled, do not reply to any messages
+
     # Typing indicator
     await bot.send_chat_action(chat_id, ChatAction.TYPING)
 
