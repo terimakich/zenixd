@@ -7,7 +7,7 @@ from PURVIMUSIC import app as bot
 from pyrogram import idle
 
 # MongoDB connection
-MONGO_URL = os.environ.get("MONGO_URL", "mongodb+srv://bikash:bikash@bikash.3jkvhp7.mongodb.net/?retryWrites=true&w=majority")
+MONGO_URL = os.environ.get("MONGO_URL", "mongodb+srv://teamdaxx123:teamdaxx123@cluster0.ysbpgcp.mongodb.net/?retryWrites=true&w=majority")
 mongo_client = MongoClient(MONGO_URL)
 vdb = mongo_client["vDb"]["v"]
 chatai_db = mongo_client["Word"]["WordDb"]
