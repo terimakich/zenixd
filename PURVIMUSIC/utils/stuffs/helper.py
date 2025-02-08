@@ -164,7 +164,7 @@ class Helper(object):
 **ᴇxᴀᴍᴘʟᴇ -** `where is tajmahal`
 
 **๏ ɢʀᴏᴜᴘ ᴍᴇssᴀɢᴇ ᴀᴘɪ ʀᴇsᴘᴏɴᴄᴇ :-** sᴇɴᴅ ᴛᴇxᴛ ᴡɪᴛʜ ʙᴏᴛ ᴜsᴇʀɴᴀᴍᴇ
-**ᴇxᴀᴍᴘʟᴇ :-** `@HinataMusic_Robit where is tajmahal`
+**ᴇxᴀᴍᴘʟᴇ :-** `@HinataMusic_Robot where is tajmahal`
 
 **ᴀɴʏ ɪssᴜsᴇ ᴄᴏɴᴛᴀᴄᴛ ᴏᴡɴᴇʀ**
 """
