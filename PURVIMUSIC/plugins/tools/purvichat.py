@@ -318,7 +318,7 @@ async def chatbot_reply(client, message: Message):
         return
 
     # Save the chat (for monitoring and learning purposes)
-    await save_chat_to_db(chat_id, text, message.sticker)
+  #  await save_chat_to_db(chat_id, text, message.sticker)
 
     # Agar message group mein hai
     if message.chat.type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
