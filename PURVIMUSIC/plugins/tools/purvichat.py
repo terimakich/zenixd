@@ -336,3 +336,40 @@ async def chatbot_reply(client, message: Message):
         else:
             await message.reply_text(f"❍ ᴇʀʀᴏʀ: API failed. Status: {response.status_code}")
                 
+
+
+# ✅ /chatbot Command with Buttons
+@bot.on_message(filters.command("chatbot") & filters.group)
+async def chatbot_control(client, message: Message):
+    chat_id = message.chat.id
+    user_id = message.from_user.id
+
+    if not await is_admin(chat_id, user_id):
+        return await message.reply_text("❍ ʏᴏᴜ ᴀʀᴇ ɴᴏᴛ ᴀɴ ᴀᴅᴍɪɴ !!")
+
+    await message.reply_text(
+        f"**๏ ᴄʜᴀᴛʙᴏᴛ ᴄᴏɴᴛʀᴏʟ ᴘᴀɴɴᴇʟ**\n\n"
+        f"**✦ ᴄʜᴀᴛ ɴᴀᴍᴇ : {message.chat.title}**\n"
+        f"**✦ ᴄʜᴀᴛʙᴏᴛ ᴇɴᴀʙʟᴇ / ᴅɪsᴀʙʟᴇ ᴋᴀʀɴᴇ ᴋʌ ᴀɴ ᴏᴘᴛɪᴏɴ ᴄʜᴏᴏsᴇ ᴋᴈʀᴇɴ.**",
+        reply_markup=InlineKeyboardMarkup(CHATBOT_ON),
+    )
+
+# ✅ Callback for Enable/Disable Buttons
+@bot.on_callback_query(filters.regex(r"enable_chatbot|disable_chatbot"))
+async def chatbot_callback(client, query: CallbackQuery):
+    chat_id = query.message.chat.id
+    user_id = query.from_user.id
+
+    if not await is_admin(chat_id, user_id):
+        return await query.answer("❍ ʏᴏᴜ ᴀʀᴇ ɴᴏᴛ ᴀɴ ᴀᴅᴍɪɴ !!", show_alert=True)
+
+    action = query.data
+
+    if action == "enable_chatbot":
+        status_db.update_one({"chat_id": chat_id}, {"$set": {"status": "enabled"}}, upsert=True)
+        await query.answer("✅ ᴄʜᴀᴛʙᴏᴛ ᴇɴᴀʙʟᴇᴅ !!", show_alert=True)
+        await query.edit_message_text(f"**✦ ᴄʜᴀᴛʙᴏᴛ ʜᴀs ʙᴇᴇɴ ᴇɴᴀʙʟᴇᴅ ɪɴ {query.message.chat.title}.**")
+    else:
+        status_db.update_one({"chat_id": chat_id}, {"$set": {"status": "disabled"}}, upsert=True)
+        await query.answer("🚫 ᴄʜᴀᴛʙᴏᴛ ᴅɪsᴀʙʟᴇᴅ !!", show_alert=True)
+        await query.edit_message_text(f"**✦ ᴄʜᴀᴛʙᴏᴛ ʜᴀs ʙᴇᴇɴ ᴅɪsᴀʙʟᴇᴅ ɪɴ {query.message.chat.title}.**")
