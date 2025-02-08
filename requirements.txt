@@ -16,6 +16,7 @@ pycountry
 heroku3
 apscheduler
 motor 
+langdetect
 numpy
 pillow==9.5.0
 psutil
