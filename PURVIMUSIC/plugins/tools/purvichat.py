@@ -16,7 +16,7 @@ import time
 from random import choice
 from PURVIMUSIC import app as bot
 
-MONGO_URL = os.environ.get("MONGO_URL", "mongodb+srv://bikash:bikash@bikash.3jkvhp7.mongodb.net/?retryWrites=true&w=majority")
+MONGO_URL = os.environ.get("MONGO_URL", "mongodb+srv://PURVIMUSIC:PurviBots@cluster0.eclc5.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
 
 
 async def is_admins(chat_id: int):
