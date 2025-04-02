@@ -18,7 +18,7 @@ class Helper(object):
     
     HELP_ABOUT = '''
     **─────────────────────────
-❖ ʜєʏ ɪ'ϻ [ʜɪηᴧᴛᴧ](t.me/hinatamusic_robot) ᴧ ϻᴜsɪᴄ + ᴄʜᴧᴛ ʙσᴛ ғσʀ ᴛєʟєɢʀᴧϻ ɢʀσᴜᴘs / ᴄʜᴧηηєʟs
+❖ ʜєʏ ɪ'ϻ [ʜɪηᴧᴛᴧ](t.me/HinataMusicRobot) ᴧ ϻᴜsɪᴄ + ᴄʜᴧᴛ ʙσᴛ ғσʀ ᴛєʟєɢʀᴧϻ ɢʀσᴜᴘs / ᴄʜᴧηηєʟs
 ─────────────────────────
 ● ᴡʀɪᴛᴛєη ɪη ➥ [ᴩʏᴛʜση](https://www.python.org/)
 ● ᴅᴧᴛᴧʙᴧsє ➥ [ϻᴏηɢᴏ-ᴅʙ](https://www.mongodb.com/)
