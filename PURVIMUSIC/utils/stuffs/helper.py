@@ -26,8 +26,8 @@ class Helper(object):
 ● ηᴏ ʟᴀɢ ɪssᴜєs ηᴏ ᴧᴅs ηᴏ ʙᴜɢs.
 ● ᴧᴅᴅ ϻє ηᴏᴡ ʙᴧʙʏ ɪɴ ʏᴏᴜʀ ɢʀσᴜᴘs.
 ─────────────────────────
-❖ υᴘᴅᴧᴛєs ᴄʜᴧηηєʟ ➥ [ᴘᴜʀᴠɪ-ʙσᴛs](https://t.me/PURVI_SUPPORT)
-❖ sυᴘᴘσʀᴛ ᴄʜᴧᴛ ➥ [ᴘᴜʀᴠɪ-ᴜᴘᴅᴧᴛєs](https://t.me/PURVI_UPDATES)
+❖ υᴘᴅᴧᴛєs ᴄʜᴧηηєʟ ➥ [ᴋʀɪᴛɪ-ʙσᴛs](https://t.me/KRITI_UPDATE)
+❖ sυᴘᴘσʀᴛ ᴄʜᴧᴛ ➥ [ᴋʀɪᴛɪ-ᴜᴘᴅᴧᴛєs](https://t.me/KRITI_UPDATE)
 ❖ ʀєᴘσ ʟɪηᴋ ➥ [ᴄʟɪᴄᴋ-ʜєʀє](github.com/TEAMPURVI)
 ─────────────────────────
 ❖ ᴄʟɪᴄᴋ ση ᴛʜє ʜєʟᴩ ʙυᴛᴛση ᴛσ ɢєᴛ ɪηғσ
@@ -164,7 +164,7 @@ class Helper(object):
 **ᴇxᴀᴍᴘʟᴇ -** `where is tajmahal`
 
 **๏ ɢʀᴏᴜᴘ ᴍᴇssᴀɢᴇ ᴀᴘɪ ʀᴇsᴘᴏɴᴄᴇ :-** sᴇɴᴅ ᴛᴇxᴛ ᴡɪᴛʜ ʙᴏᴛ ᴜsᴇʀɴᴀᴍᴇ
-**ᴇxᴀᴍᴘʟᴇ :-** `@HinataMusicRobot where is tajmahal`
+**ᴇxᴀᴍᴘʟᴇ :-** `@MeowxMusicRoBot where is tajmahal`
 
 **ᴀɴʏ ɪssᴜsᴇ ᴄᴏɴᴛᴀᴄᴛ ᴏᴡɴᴇʀ**
 """
