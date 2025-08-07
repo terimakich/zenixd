@@ -18,7 +18,7 @@ class Helper(object):
     
     HELP_ABOUT = '''
     **─────────────────────────
-❖ ʜєʏ ɪ'ϻ [𝗞ʀɪᴛɪ](t.me/MeowxMusicRoBot) ᴧ ϻᴜsɪᴄ + ᴄʜᴧᴛ ʙσᴛ ғσʀ ᴛєʟєɢʀᴧϻ ɢʀσᴜᴘs / ᴄʜᴧηηєʟs
+❖ ʜєʏ ɪ'ϻ [𝐇ɪη፝֠֩ᴧᴛᴧ](t.me/hinatamusicrobot) ᴧ ϻᴜsɪᴄ + ᴄʜᴧᴛ ʙσᴛ ғσʀ ᴛєʟєɢʀᴧϻ ɢʀσᴜᴘs / ᴄʜᴧηηєʟs
 ─────────────────────────
 ● ᴡʀɪᴛᴛєη ɪη ➥ [ᴩʏᴛʜση](https://www.python.org/)
 ● ᴅᴧᴛᴧʙᴧsє ➥ [ϻᴏηɢᴏ-ᴅʙ](https://www.mongodb.com/)
@@ -26,9 +26,9 @@ class Helper(object):
 ● ηᴏ ʟᴀɢ ɪssᴜєs ηᴏ ᴧᴅs ηᴏ ʙᴜɢs.
 ● ᴧᴅᴅ ϻє ηᴏᴡ ʙᴧʙʏ ɪɴ ʏᴏᴜʀ ɢʀσᴜᴘs.
 ─────────────────────────
-❖ υᴘᴅᴧᴛєs ᴄʜᴧηηєʟ ➥ [ᴋʀɪᴛɪ-ʙσᴛs](https://t.me/KRITI_UPDATE)
-❖ sυᴘᴘσʀᴛ ᴄʜᴧᴛ ➥ [ᴋʀɪᴛɪ-ᴜᴘᴅᴧᴛєs](https://t.me/KRITI_UPDATE)
-❖ ʀєᴘσ ʟɪηᴋ ➥ [ᴄʟɪᴄᴋ-ʜєʀє](github.com/TEAMPURVI)
+❖ υᴘᴅᴧᴛєs ᴄʜᴧηηєʟ ➥ [𝐊ᴀɪsᴇɴ 𝐁ᴏᴛs](https://t.me/TEAMKAISEN)
+❖ sυᴘᴘσʀᴛ ᴄʜᴧᴛ ➥ [𝐊ᴀɪsᴇɴ ᴜᴘᴅᴧᴛєs](https://t.me/GHOULS_SUPPORT)
+❖ ʀєᴘσ ʟɪηᴋ ➥ [ᴄʟɪᴄᴋ-ʜєʀє](github.com/TEAMKAISEN)
 ─────────────────────────
 ❖ ᴄʟɪᴄᴋ ση ᴛʜє ʜєʟᴩ ʙυᴛᴛση ᴛσ ɢєᴛ ɪηғσ
    ᴧʙσυᴛ ϻʏ ϻσᴅυʟєs ᴧηᴅ ᴄσϻϻᴧηᴅs...!!
@@ -164,7 +164,7 @@ class Helper(object):
 **ᴇxᴀᴍᴘʟᴇ -** `where is tajmahal`
 
 **๏ ɢʀᴏᴜᴘ ᴍᴇssᴀɢᴇ ᴀᴘɪ ʀᴇsᴘᴏɴᴄᴇ :-** sᴇɴᴅ ᴛᴇxᴛ ᴡɪᴛʜ ʙᴏᴛ ᴜsᴇʀɴᴀᴍᴇ
-**ᴇxᴀᴍᴘʟᴇ :-** `@MeowxMusicRoBot where is tajmahal`
+**ᴇxᴀᴍᴘʟᴇ :-** `@HINATAMUSICROBOT where is tajmahal`
 
 **ᴀɴʏ ɪssᴜsᴇ ᴄᴏɴᴛᴀᴄᴛ ᴏᴡɴᴇʀ**
 """
