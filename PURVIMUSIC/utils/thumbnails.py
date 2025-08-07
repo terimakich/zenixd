@@ -74,7 +74,7 @@ async def get_thumb(videoid):
         arial = ImageFont.truetype("PURVIMUSIC/assets/font2.ttf", 30)
         font = ImageFont.truetype("PURVIMUSIC/assets/font.ttf", 30)
         text_size = draw.textsize("TEAM KRITI BOTS    ", font=font)
-        draw.text((1280 - text_size[0] - 10, 10), "TEAM KRITI BOTS    ", fill="white", font=font)
+        draw.text((1280 - text_size[0] - 10, 10), "TEAM KAISEN BOTS    ", fill="yellow", font=font)
         draw.text(
             (55, 560),
             f"{channel} | {views[:23]}",
