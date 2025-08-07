@@ -35,10 +35,10 @@ DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", 17000))
 # ----------------------------------------------------------------
 
 # ----------------------------------------------------------------
-LOGGER_ID = int(getenv("LOGGER_ID", -1002145684248))
+LOGGER_ID = int(getenv("LOGGER_ID", -1002376574665))
 # ----------------------------------------------------------------
 # ----------------------------------------------------------------
-OWNER_ID = int(getenv("OWNER_ID", 7403621976))
+OWNER_ID = int(getenv("OWNER_ID", 6311318596))
 # -----------------------------------------------------------------
 # -----------------------------------------------------------------
 HEROKU_APP_NAME = getenv("HEROKU_APP_NAME")
@@ -48,7 +48,7 @@ HEROKU_API_KEY = getenv("HEROKU_API_KEY")
 # ----------------------------------------------------------------
 UPSTREAM_REPO = getenv(
     "UPSTREAM_REPO",
-    "https://github.com/Badnam019/Hinu",
+    "https://github.com/SAMHEHE1/hinata",
 )
 UPSTREAM_BRANCH = getenv("UPSTREAM_BRANCH", "main")
 GIT_TOKEN = getenv(
@@ -56,8 +56,8 @@ GIT_TOKEN = getenv(
 )  # ----------------------------------------------------------------
 # -------------------------------------------------------------------
 
-SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/+svVGcsOFKK9lZTc1")
-SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/aboutdumpdude")
+SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/KAISEN_UPDATES")
+SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/GHOULS_SUPPORT")
 
 # --------------------------------------------------------------------------------
 # --------------------------------------------------------------------------------
