@@ -16,12 +16,8 @@ import random
 import logging
 import aiohttp
 import config
-#from config import API_URL, API_KEY
+from config import API_URL, API_KEY
 
-from os import getenv
-
-API_URL = getenv("API_URL", 'https://api.thequickearn.xyz')
-API_KEY = getenv("API_KEY", 'NxGBNexGenBotsb4f439')
 
 def cookie_txt_file():
     cookie_dir = f"{os.getcwd()}/cookies"
@@ -35,67 +31,61 @@ async def download_song(link: str):
     video_id = link.split('v=')[-1].split('&')[0]
 
     download_folder = "downloads"
-    os.makedirs(download_folder, exist_ok=True)
-
     for ext in ["mp3", "m4a", "webm"]:
         file_path = f"{download_folder}/{video_id}.{ext}"
         if os.path.exists(file_path):
+            #print(f"File already bwf: {file_path}")
             return file_path
 
     song_url = f"{API_URL}/song/{video_id}?api={API_KEY}"
-
     async with aiohttp.ClientSession() as session:
-        download_url = None
-        file_format = "mp3"
-
-        for attempt in range(10):
+        while True:
             try:
                 async with session.get(song_url) as response:
                     if response.status != 200:
                         raise Exception(f"API request failed with status code {response.status}")
-                    
                     data = await response.json()
                     status = data.get("status", "").lower()
-
-                    if status == "done":
-                        download_url = data.get("link")
-                        file_format = data.get("format", "mp3").lower()
-                        break
-                    elif status == "downloading":
-                        await asyncio.sleep(4)
-                    else:
-                        error_msg = data.get("error") or data.get("message") or f"Unexpected status '{status}'"
+                    if status == "downloading":
+                        await asyncio.sleep(2)
+                        continue
+                    elif status == "error":
+                        error_msg = data.get("error") or data.get("message") or "Unknown error"
                         raise Exception(f"API error: {error_msg}")
+                    elif status == "done":
+                        download_url = data.get("link")
+                        if not download_url:
+                            raise Exception("API response did not provide a download URL.")
+                        break
+                    else:
+                        raise Exception(f"Unexpected status '{status}' from API.")
             except Exception as e:
-                print(f"[Attempt {attempt+1}/10] Failed: {e}")
-                await asyncio.sleep(2)
-
-        if not download_url:
-            print("Download URL not received after multiple attempts.")
-            return None
-
-        file_name = f"{video_id}.{file_format}"
-        file_path = os.path.join(download_folder, file_name)
+                print(f"Error while checking API status: {e}")
+                return None
 
         try:
+            file_format = data.get("format", "mp3")
+            file_extension = file_format.lower()
+            file_name = f"{video_id}.{file_extension}"
+            download_folder = "downloads"
+            os.makedirs(download_folder, exist_ok=True)
+            file_path = os.path.join(download_folder, file_name)
+
             async with session.get(download_url) as file_response:
-                if file_response.status != 200:
-                    raise Exception(f"File download failed with status code {file_response.status}")
-                
                 with open(file_path, 'wb') as f:
                     while True:
                         chunk = await file_response.content.read(8192)
                         if not chunk:
                             break
                         f.write(chunk)
-
-            return file_path
+                return file_path
         except aiohttp.ClientError as e:
             print(f"Network or client error occurred while downloading: {e}")
             return None
         except Exception as e:
-            print(f"Error occurred while saving the song: {e}")
+            print(f"Error occurred while downloading song: {e}")
             return None
+    return None
 
 async def check_file_size(link):
     async def get_format_info(link):
@@ -123,12 +113,12 @@ async def check_file_size(link):
     info = await get_format_info(link)
     if info is None:
         return None
-    
+
     formats = info.get('formats', [])
     if not formats:
         print("No formats found.")
         return None
-    
+
     total_size = parse_size(formats)
     return total_size
 
